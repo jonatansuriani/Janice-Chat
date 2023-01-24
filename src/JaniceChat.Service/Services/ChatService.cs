@@ -4,8 +4,6 @@ using JaniceChat.MessageBroker.Abstraction.Events;
 using JaniceChat.Repository.Abstraction;
 using JaniceChat.Service.Abstraction.Services;
 using MassTransit;
-using System;
-using System.Threading.Tasks;
 
 namespace JaniceChat.Service.Services
 {
@@ -27,7 +25,12 @@ namespace JaniceChat.Service.Services
         public async Task<ChatMessage> CreateMessage(Guid roomId, string userName, string message)
         {
             var room = await _chatRepository.GetChatRoomById(roomId);
+            if (room == null) 
+                throw new ChatServiceException() { Reason = ChatServiceException.ReasonType.RoomNotFound };
+
             var user = await _userRepository.GetUserByUserName(userName);
+            if (user == null)
+                throw new ChatServiceException() { Reason = ChatServiceException.ReasonType.UserNotFound };
 
             var chat = room.AddMessage(user, message);
 

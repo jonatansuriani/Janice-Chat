@@ -25,7 +25,7 @@ namespace JaniceChat.Api.Controllers
             _mapper = mapper;
         }
 
-        [HttpPost("{roomId}")]
+        [HttpPost("room/{roomId}/message")]
         public async Task<IActionResult> SendMessage(Guid roomId, [FromBody] SendMessageRequestModel model) 
         {
             await _bus.Publish(new SendMessageCommand { Message = model.Message, RoomId = roomId, UserName = User.Identity.Name });
@@ -33,7 +33,7 @@ namespace JaniceChat.Api.Controllers
             return Accepted();
         }
 
-        [HttpGet("{roomId}")]
+        [HttpGet("room/{roomId}/messages")]
         public async Task<ActionResult<List<ChatMessageModel>>> GetMessages(Guid roomId, int skip, int take)
         {
             var messsages = await _chatRepository.GetMessages(roomId, skip, take);

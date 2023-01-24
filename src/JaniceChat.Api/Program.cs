@@ -1,6 +1,7 @@
 using JaniceChat.Api.Models;
 using JaniceChat.Domain;
 using JaniceChat.MessageBroker;
+using JaniceChat.MessageBroker.Abstraction;
 using JaniceChat.MessageBroker.Handlers;
 using JaniceChat.Repository;
 using JaniceChat.Service;
@@ -35,10 +36,11 @@ builder.Services
 
         x.UsingRabbitMq((context, cfg) =>
         {
-            cfg.Host("localhost", "/", h =>
+            var brokerConfig = builder.Configuration.GetMessageBrokerConfiguration();
+            cfg.Host(brokerConfig.Host, "/", h =>
             {
-                h.Username("guest");
-                h.Password("guest");
+                h.Username(brokerConfig.User);
+                h.Password(brokerConfig.Password);
             });
 
             cfg.ConfigureEndpoints(context);

@@ -1,5 +1,6 @@
 ﻿using JaniceChat.FinBot;
 using JaniceChat.FinBot.Consumers;
+using JaniceChat.MessageBroker.Abstraction;
 using MassTransit;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,10 +18,11 @@ builder.Services
 
         x.UsingRabbitMq((context, cfg) =>
         {
-            cfg.Host("localhost", "/", h =>
+            var brokerConfig = builder.Configuration.GetMessageBrokerConfiguration();
+            cfg.Host(brokerConfig.Host, "/", h =>
             {
-                h.Username("guest");
-                h.Password("guest");
+                h.Username(brokerConfig.User);
+                h.Password(brokerConfig.Password);
             });
 
             cfg.ConfigureEndpoints(context);
