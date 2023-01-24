@@ -15,6 +15,8 @@ Disclaimer:
         - `{command}` is a command name. Eg.: `stock`;
         - `{parameter}` is a parameter for the commmand. Eg.: `aapl.us`;
 
+> Please, refer to [Improvements](#improvements) section
+
 ### Command: Stock
 Allows users to use command `/stock` that will use `stooq.com` API to get stock data, and then post this data back to the chat room as message in the following format: 
 > "`stock_code` quote is `value` per share"
