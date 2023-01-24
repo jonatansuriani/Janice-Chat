@@ -1,0 +1,78 @@
+# Compiled output
+bin/
+obj/
+
+# Dependency directories
+packages/
+
+# User-specific files
+*.user
+*.vspscc
+*.vssscc
+*.suo
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+
+# Visual Studio files
+*.sln
+*.csproj
+*.vcxproj
+*.dbproj
+*.vbproj
+*.fsproj
+
+# Visual Studio Code files
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# ReSharper files
+_ReSharper*/
+*.ReSharper
+
+# DotCover files
+*.dotCover
+
+# Rider files
+*.rider
+
+# R# backup files
+*.*.resharper.backup
+
+# JustCode files
+.JustCode
+
+# Web Essentials files
+.editorconfig
+.jshintrc
+.csslintrc
+
+# Node.js files
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# TypeScript files
+*.tsbuildinfo
+
+# StyleCop files
+*.StyleCop
+
+# Files created by Visual Studio
+*.opensdf
+*.sdf
+*.opendb
+*.rdb
+*.dbmdl
+*.dbproj.schemaview
+*.jfm
+*.pfx
+*.publishsettings
