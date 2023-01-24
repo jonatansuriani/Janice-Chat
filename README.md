@@ -2,6 +2,11 @@
 A simple browser-based chat application using .NET.
 Should allow several users to talk in a chatroom and also to get stock quotes from an API using a specific command.
 
+Disclaimer:
+>The naming of this Git repository, 'Janis', is inspired by the character of the same name from the TV show 'Friends'. The choice of this name is not intended to infringe on any copyright or trademark laws, and is used solely for the purpose of providing context and a memorable name for the repository. The character's personality, actions or traits do not represent the project or its creators. The project and its creators are in no way affiliated with or endorsed by the creators or owners of the television show 'Friends'.
+
+![Janice](docs/images/janice.jpg)
+
 ## Features
 - Allow users to register in the application;
 - Allow registered users to log in and talk with other users in a chatroom;
@@ -80,6 +85,8 @@ docker run -p 15672:15672 -p 5672:5672 masstransit/rabbitmq
 ```
 
 # Improvements
+- Create UI to use chat;
+- Create docker and docker-compose files;
 - Use an identity Provider (AWS Cognito, Keycloak);
     - For now, it's a ad-hoc identity provider for the sake of simplicity
 - Increase code coverage of unit tests;
