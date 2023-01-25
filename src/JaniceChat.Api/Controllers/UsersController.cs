@@ -1,6 +1,8 @@
 ﻿using JaniceChat.Api.Models;
 using JaniceChat.Domain;
 using JaniceChat.Repository.Abstraction;
+using JaniceChat.Service.Abstraction.Services;
+using JaniceChat.Service.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -15,10 +17,12 @@ namespace JaniceChat.Api.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserRepository _repository;
+        private readonly IUserService _userService;
 
-        public UsersController(IUserRepository repository)
+        public UsersController(IUserRepository repository, IUserService userService)
         {
             _repository = repository;
+            _userService = userService;
         }
 
         [HttpPost("authorize")]
@@ -41,9 +45,15 @@ namespace JaniceChat.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] UserModel request)
         {
-            var user = await _repository.Create(request.UserName);
-
-            return Created($"/users/{user.Id}", user);
+            try
+            {
+                var user = await _userService.Create(request.UserName);
+                return Created($"/users/{user.Id}", user);
+            }
+            catch (UserServiceException ex) // ideally this should be done in a middleware
+            {
+                return BadRequest(new { ex.Message });
+            }
         }
 
         private string GenerateToken(User user)
@@ -59,6 +69,7 @@ namespace JaniceChat.Api.Controllers
                 Expires = DateTime.UtcNow.AddDays(30),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
+
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
         }
