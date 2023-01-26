@@ -87,8 +87,13 @@ docker run -p 15672:15672 -p 5672:5672 masstransit/rabbitmq
 ```
 
 # Improvements
-- Create UI to use chat;
+- For the sake of simplicity, it's running in-memory database;
+    - Setup PostgreSQL or MySQL ;
+    - Setup EF migrations;
 - Create docker and docker-compose files;
+    - [X] Dockerfile for API
+    - [ ] Dockerfile for Bot
+    - [ ] Dockerfile for React
 - Use an identity Provider (AWS Cognito, Keycloak);
     - For now, it's a ad-hoc identity provider for the sake of simplicity
 - Increase code coverage of unit tests;
