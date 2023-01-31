@@ -18,14 +18,6 @@ x64/
 x86/
 build/
 
-# Visual Studio files
-*.sln
-*.csproj
-*.vcxproj
-*.dbproj
-*.vbproj
-*.fsproj
-
 # Visual Studio Code files
 .vscode/*
 !.vscode/settings.json
