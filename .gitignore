@@ -18,6 +18,9 @@ x64/
 x86/
 build/
 
+# Visual Studio files
+.vs/*
+
 # Visual Studio Code files
 .vscode/*
 !.vscode/settings.json

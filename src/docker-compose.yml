@@ -1,0 +1,40 @@
+version: '3'
+services:
+  api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - MessageBroker__Host=rabbitmq
+    depends_on:
+      - rabbitmq
+    build:
+      context: ./
+      dockerfile: ./JaniceChat.Api/Dockerfile
+    ports:
+      - "8080:80"
+
+  bot:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - MessageBroker__Host=rabbitmq
+    depends_on:
+      - rabbitmq
+    build:
+      context: ./
+      dockerfile: ./JaniceChat.FinBot/Dockerfile
+    ports:
+      - "8081:80"
+
+  rabbitmq:
+    image: masstransit/rabbitmq
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+
+  ui:
+    depends_on:
+      - api
+    ports:
+      - "3000:3000"
+    build:
+      context: ./JaniceChat.UI/
+      #dockerfile: ./JaniceChat.UI/Dockerfile
