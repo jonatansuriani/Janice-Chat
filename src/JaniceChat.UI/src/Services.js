@@ -1,6 +1,6 @@
 import { HubConnectionBuilder } from "@microsoft/signalr";
 
-const baseUrl = "https://localhost:7073/";
+const baseUrl = "http://localhost:5071/";
 
 const apiCall = async (url, options) => {
 

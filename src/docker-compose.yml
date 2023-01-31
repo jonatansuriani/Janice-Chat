@@ -10,7 +10,7 @@ services:
       context: ./
       dockerfile: ./JaniceChat.Api/Dockerfile
     ports:
-      - "8080:80"
+      - "5071:80"
 
   bot:
     environment:
@@ -37,4 +37,3 @@ services:
       - "3000:3000"
     build:
       context: ./JaniceChat.UI/
-      #dockerfile: ./JaniceChat.UI/Dockerfile
