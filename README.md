@@ -78,13 +78,12 @@ API documentation can be accessed using [Swagger](https://localhost:7073/swagger
 ## Running the Application
 
 ### Docker Compose
-
-### Manually
-
-Start RabbitMQ:
 ```
-docker run -p 15672:15672 -p 5672:5672 masstransit/rabbitmq
+cd src
+docker compose up
 ```
+
+Application will start at: [http://localhost:3000](http://localhost:3000).
 
 # Improvements
 - For the sake of simplicity, it's running in-memory database;
@@ -92,8 +91,8 @@ docker run -p 15672:15672 -p 5672:5672 masstransit/rabbitmq
     - Setup EF migrations;
 - Create docker and docker-compose files;
     - [X] Dockerfile for API
-    - [ ] Dockerfile for Bot
-    - [ ] Dockerfile for React
+    - [X] Dockerfile for Bot
+    - [X] Dockerfile for React
 - Use an identity Provider (AWS Cognito, Keycloak);
     - For now, it's a ad-hoc identity provider for the sake of simplicity
 - Increase code coverage of unit tests;

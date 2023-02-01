@@ -22,7 +22,7 @@ const App = () => {
         </div>)
       : (
         <div>
-          <button onClick={()=>{localStorage.setItem("token", null); handleOnLoginSuccessful(null)}}>Logout</button>
+          <button onClick={()=>{localStorage.removeItem("token"); handleOnLoginSuccessful(null)}}>Logout</button>
           <ChatRoom />
         </div>
       )}

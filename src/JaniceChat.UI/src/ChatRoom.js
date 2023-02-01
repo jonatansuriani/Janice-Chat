@@ -37,9 +37,7 @@ class ChatRoom extends React.Component {
     };
 
     async onMessageCreatedEvent (message) {
-        console.log(this.state);
         this.setState({ messages: [...this.state.messages, message]});
-        console.log(this.state);
     };
 
     async onMessageSubmit(event){
@@ -52,10 +50,12 @@ class ChatRoom extends React.Component {
    
         return (
             <>
+                <RoomForm onRoomCreated={this.refreshChatRooms} />
+                <hr />
+                Rooms Available:
                 <button onClick={this.refreshChatRooms}>Refresh Rooms</button>
 
-                <RoomForm onRoomCreated={this.refreshChatRooms} />
-
+                
                 <ul>
                     {this.state.roomList.map((room) => (
                         <button key={room.id} onClick={()=>this.onRoomSelected(room)}>{room.name}</button>
